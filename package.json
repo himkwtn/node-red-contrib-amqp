@@ -1,0 +1,16 @@
+{
+  "name": "node-red-contrib-amqp",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.6"
+  },
+  "node-red": {
+    "nodes": {
+      "amqp-in": "amqp-in.js",
+      "amqp-out": "amqp-out.js"
+    }
+  }
+}
