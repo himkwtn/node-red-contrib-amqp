@@ -8,6 +8,7 @@
       hostname: { value: "localhost" },
       port: { value: 5672 },
     },
+    inputs: 0,
     outputs: 1,
     icon: "white-globe.svg",
     label: function () {
@@ -20,10 +21,16 @@
   <div class="form-row">
       <label for="node-input-name"><i class="icon-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
       <label for="node-input-queue"><i class="icon-tag"></i> Queue</label>
       <input type="text" id="node-input-queue" placeholder="Queue">
+    </div>
+    <div class="form-row">
       <label for="node-input-hostname"><i class="icon-tag"></i> Hostname</label>
       <input type="text" id="node-input-hostname" placeholder="Hostname">
+    </div>
+    <div class="form-row">
       <label for="node-input-port"><i class="icon-tag"></i> Port</label>
       <input type="text" id="node-input-port" placeholder="Port">
   </div>
