@@ -6,19 +6,23 @@ module.exports = function (RED) {
       const node = this;
       const { queue, hostname, port } = config;
       amqp.connect({ hostname, port }, function (err, conn) {
-        conn.createChannel(function (err, ch) {
-          ch.assertQueue(queue);
-          ch.consume(queue, function (msg) {
-            if (msg !== null) {
-              ch.ack(msg);
-              const payload = JSON.parse(msg.content.toString());
-              node.send({ payload });
-            }
+        if (err) {
+          node.error(err);
+        } else {
+          conn.createChannel(function (err, ch) {
+            ch.assertQueue(queue);
+            ch.consume(queue, function (msg) {
+              if (msg !== null) {
+                ch.ack(msg);
+                const payload = JSON.parse(msg.content.toString());
+                node.send({ payload });
+              }
+            });
+            node.on("close", function (done) {
+              ch.close(done);
+            });
           });
-          node.on("close", function (done) {
-            ch.close(done);
-          });
-        });
+        }
       });
     }
   }
