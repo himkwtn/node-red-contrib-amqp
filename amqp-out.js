@@ -16,7 +16,8 @@ module.exports = function (RED) {
               }
             }
             ch.assertQueue(queue);
-            ch.sendToQueue(queue, Buffer.from(String(msg.payload)));
+            const payload = Buffer.from(JSON.stringify(msg.payload));
+            ch.sendToQueue(queue, payload);
             if (done) {
               done();
             }

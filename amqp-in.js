@@ -11,7 +11,8 @@ module.exports = function (RED) {
           ch.consume(queue, function (msg) {
             if (msg !== null) {
               ch.ack(msg);
-              node.send({ payload: msg.content.toString() });
+              const payload = JSON.parse(msg.content.toString());
+              node.send({ payload });
             }
           });
           node.on("close", function (done) {
